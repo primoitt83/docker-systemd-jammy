@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  systemd:
+    container_name: systemd
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: always
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    tty: true
+    environment:
+      - container=docker
+    network_mode: host
+    privileged: true
+    logging:
+      options:
+        max-size: 100M
